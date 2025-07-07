@@ -1,83 +1,208 @@
-# 🎯 Project: Student Manager
+# Project: Learning Management System
 
-Một ứng dụng Django nhỏ gọn, dành cho giáo viên quản lý học sinh và lớp học. Phù hợp để luyện tập mô hình quan hệ, Django admin, view cơ bản hoặc API.
-
----
-
-## 1. Mục tiêu chính
-
-- Cho phép giáo viên đăng nhập và quản lý học sinh.
-- Xem danh sách học sinh theo lớp học.
-- Ghi điểm và xem lịch sử điểm của học sinh.
-- Ghi chú cá nhân cho từng học sinh.
+A compact Django application designed for teachers to manage students and classrooms. Suitable for practicing relational models, Django admin, basic views, and APIs.
 
 ---
 
-## 2. Mô hình dữ liệu (Models)
+## 1. Main Objectives
 
-### 👤 `Student`
-- `full_name`: tên đầy đủ
-- `birth_date`: ngày sinh
-- `classroom`: liên kết đến lớp học (`Classroom`)
-- `notes`: ghi chú riêng (tùy chọn)
-
-### 🧑‍🏫 `Teacher`
-- `user`: liên kết với Django `User`
-- `full_name`: tên giáo viên
-- `email`: địa chỉ email
-
-### 🏫 `Classroom`
-- `name`: tên lớp học (VD: "10A1")
-- `teacher`: giáo viên chủ nhiệm (`Teacher`)
-
-### 🧾 `Score`
-- `student`: học sinh được chấm điểm
-- `subject`: tên môn học (VD: Toán, Văn)
-- `score`: điểm số
-- `date`: ngày ghi điểm
+- Allow teachers to login and manage students
+- View student lists by classroom
+- Record scores and view student score history
+- Add personal notes for each student
+- Provide comprehensive statistics and reporting
+- Export data in various formats
 
 ---
 
-## 3. Chức năng chính
+## 2. Data Models
 
-### A. Đăng nhập giáo viên
-- Chỉ giáo viên đăng nhập mới được truy cập hệ thống
+### Teacher
+- `user`: Link to Django User model
+- `full_name`: Teacher's full name
+- `email`: Email address (unique)
+- `phone`: Phone number (optional)
+- `created_at`: Creation timestamp
+- `updated_at`: Last update timestamp
 
-### B. Quản lý lớp học
-- Xem danh sách lớp
-- Xem danh sách học sinh trong lớp
+### Classroom
+- `name`: Classroom name (e.g., "10A1")
+- `teacher`: Homeroom teacher (Teacher model)
+- `description`: Classroom description (optional)
+- `grade_level`: Grade level (e.g., "10", "11", "12")
+- `school_year`: Academic year (e.g., "2024-2025")
+- `is_active`: Active status
+- `created_at`: Creation timestamp
+- `updated_at`: Last update timestamp
 
-### C. Quản lý học sinh
-- Thêm / sửa / xoá học sinh
-- Xem thông tin chi tiết của từng học sinh
-- Thêm ghi chú riêng
+### Student
+- `full_name`: Student's full name
+- `birth_date`: Date of birth
+- `gender`: Gender (Male/Female/Other)
+- `classroom`: Link to Classroom model
+- `student_id`: Unique student identifier
+- `email`: Email address (optional)
+- `phone`: Phone number (optional)
+- `address`: Home address (optional)
+- `parent_name`: Parent/guardian name (optional)
+- `parent_phone`: Parent/guardian phone (optional)
+- `notes`: Personal notes (optional)
+- `is_active`: Active status
+- `created_at`: Creation timestamp
+- `updated_at`: Last update timestamp
 
-### D. Ghi điểm học sinh
-- Thêm điểm theo từng môn học
-- Xem lịch sử điểm
+### Subject
+- `name`: Subject name (e.g., "Mathematics", "Literature")
+- `code`: Subject code (e.g., "MATH", "LIT", "ENG")
+- `description`: Subject description (optional)
+- `is_active`: Active status
+- `created_at`: Creation timestamp
+
+### Score
+- `student`: Student being graded
+- `subject`: Subject for the score
+- `score`: Score value (0-10 scale with 2 decimal places)
+- `score_type`: Type of assessment (quiz, midterm, final, assignment, participation)
+- `date`: Date when score was recorded
+- `notes`: Additional notes (optional)
+- `teacher`: Teacher who recorded the score
+- `created_at`: Creation timestamp
+- `updated_at`: Last update timestamp
 
 ---
 
-## 4. Mở rộng tiềm năng (tuỳ chọn)
+## 3. Main Features
 
-- **Thống kê lớp học**: điểm trung bình môn theo lớp
-- **Xuất dữ liệu CSV**: danh sách học sinh và điểm
-- **Phân quyền giáo viên**: mỗi giáo viên chỉ xem lớp của họ
-- **API RESTful**: xây dựng API phục vụ frontend hoặc mobile app
+### A. Teacher Authentication
+- Only authenticated teachers can access the system
+- JWT-based authentication for API access
+
+### B. Classroom Management
+- View classroom list
+- View student list in each classroom
+- Classroom statistics and reporting
+- Export student data to CSV
+
+### C. Student Management
+- Add/edit/delete students
+- View detailed student information
+- Add personal notes
+- View student score history
+- Calculate average scores by subject
+
+### D. Score Management
+- Add scores by subject and assessment type
+- View score history with filtering options
+- Bulk score creation
+- Score validation (0-10 range)
+
+### E. Subject Management
+- Manage subjects with codes
+- View subject statistics
+- Track scores by subject
 
 ---
 
-## 5. Công nghệ sử dụng
+## 4. API Features
+
+### Teacher APIs
+- CRUD operations for teacher profiles
+- Get teacher's classrooms
+- Get teacher's students
+- Swagger tags: "Teacher: Classroom Management", "Teacher: Student Management"
+
+### Classroom APIs
+- CRUD operations for classrooms
+- Get students in classroom
+- Get classroom statistics
+- Export students to CSV
+- Swagger tags: "Classroom: Student Management", "Classroom: Statistics", "Classroom: Export"
+
+### Student APIs
+- CRUD operations for students
+- Get student scores with filtering
+- Get average scores by subject
+- Swagger tags: "Student: Score Management", "Student: Statistics"
+
+### Subject APIs
+- CRUD operations for subjects
+- Get subject scores
+- Get subject statistics
+- Swagger tags: "Subject: Score Management", "Subject: Statistics"
+
+### Score APIs
+- CRUD operations for scores
+- Filter scores by classroom
+- Bulk score creation
+- Swagger tags: "Score: Classroom Filter", "Score: Bulk Operations"
+
+---
+
+## 5. Advanced Features
+
+### Statistics and Reporting
+- Average scores by subject and classroom
+- Overall classroom performance metrics
+- Student performance tracking
+
+### Data Export
+- CSV export for student lists
+- Include average scores in exports
+- Formatted with proper headers
+
+### Permission System
+- Teachers can only view/edit their own classrooms and students
+- Automatic teacher assignment for score creation
+- Role-based access control
+
+### API Documentation
+- Comprehensive Swagger documentation
+- Organized by functional groups with tags
+- Interactive API testing interface
+
+---
+
+## 6. Technology Stack
 
 - Python 3.12+
 - Django 5.1
-- (Tùy chọn) Django REST Framework
-- SQLite hoặc PostgreSQL
+- Django REST Framework
+- JWT Authentication (Simple JWT)
+- Swagger/OpenAPI documentation (drf-yasg)
+- PostgreSQL or SQLite
+- Redis for caching and Celery
 
 ---
 
-## 6. Mục tiêu phát triển
+## 7. Project Structure
 
-- Ưu tiên cấu trúc đơn giản, rõ ràng
-- Có thể chạy độc lập bằng Django Admin
-- Code dễ mở rộng nếu cần thêm tính năng sau này
+### Apps
+- `learning`: Main application containing all models and APIs
+
+### Models Organization
+- Separate files for each model in `learning/models/`
+- Centralized imports in `__init__.py`
+
+### Views Organization
+- Separate ViewSets in `learning/views/`
+- Organized by functionality with appropriate Swagger tags
+
+### Serializers Organization
+- Separate serializers in `learning/serializers/`
+- Different serializers for list/detail views
+
+### Admin Interface
+- Comprehensive Django admin configuration
+- Separate admin files for each model
+- Enhanced admin features with custom methods
+
+---
+
+## 8. Development Goals
+
+- Clean, maintainable code structure
+- Comprehensive API documentation
+- Robust permission system
+- Easy to extend and modify
+- Production-ready with proper validation
+- Comprehensive test data generation
