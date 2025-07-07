@@ -1,3 +1,5 @@
+from .aws import AWS_STORAGE_BUCKET_NAME
+
 STORAGES = {
     # Backend for static files
     "staticfiles": {
@@ -14,9 +16,6 @@ THUMBNAIL_ALIASES = {
 }
 
 THUMBNAIL_BASEDIR = "thumbnails"
-
-
-from .aws import AWS_STORAGE_BUCKET_NAME
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 

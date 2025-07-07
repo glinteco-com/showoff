@@ -2,7 +2,7 @@
 DEBUG=true
 LOG_LEVEL=ERROR
 SECRET_KEY=YOUR_SECRET_KEY
-DATABASE_URL=postgres://glinteco_showoff:password@localhost:5432/glinteco_showoff
+DATABASE_URL=postgres://student_management:password@localhost:5432/student_management
 ALLOWED_HOSTS=localhost,127.0.0.1  # a list of hosts seperated by commas
 CSRF_TRUSTED_ORIGINS=  # A list of trusted origins for unsafe requests seperated by commas. Ref: https://docs.djangoproject.com/en/5.1/ref/settings/#csrf-trusted-origins
 CORS_ALLOWED_ORIGINS=  # Ref: https://github.com/adamchainz/django-cors-headers?tab=readme-ov-file#cors_allowed_origins-sequencestr

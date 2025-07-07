@@ -1,6 +1,6 @@
 """
-    This configuration file overrides some necessary configs
-    to allow running unittests.
+This configuration file overrides some necessary configs
+to allow running unittests.
 """
 
 from .base import *  # noqa

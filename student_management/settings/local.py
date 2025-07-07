@@ -1,6 +1,6 @@
 """
-    This configuration file overrides some necessary configs
-    to easily develop the app.
+This configuration file overrides some necessary configs
+to easily develop the app.
 """
 
 from .base import *  # noqa

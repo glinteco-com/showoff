@@ -7,8 +7,8 @@ Project for showing off capability of Glinteco Company
 ### Create a virtual environment
 
 ```bash
-pyenv virtualenv glinteco_showoff
-pyenv shell glinteco_showoff
+pyenv virtualenv student_management
+pyenv shell student_management
 
 # or
 
@@ -39,12 +39,12 @@ If using sqlite, you can pass this step.
 This guide intends to help create PostgreSQL db
 
 ```sql
-DROP DATABASE IF EXISTS glinteco_showoff;
+DROP DATABASE IF EXISTS student_management;
 
-CREATE DATABASE glinteco_showoff;
+CREATE DATABASE student_management;
 
-CREATE ROLE glinteco_showoff WITH LOGIN PASSWORD 'password';
-ALTER DATABASE glinteco_showoff OWNER TO glinteco_showoff;
+CREATE ROLE student_management WITH LOGIN PASSWORD 'password';
+ALTER DATABASE student_management OWNER TO student_management;
 ```
 
 ### Create environment file
@@ -100,15 +100,15 @@ brew services start redis
 ## Run celery
 
 ```bash
-ENVIRONMENT=local celery -A glinteco_showoff.celery_tasks worker -l info -Q default
-ENVIRONMENT=local celery -A glinteco_showoff.celery_tasks beat -l info
+ENVIRONMENT=local celery -A student_management.celery_tasks worker -l info -Q default
+ENVIRONMENT=local celery -A student_management.celery_tasks beat -l info
 ```
 
 ## Run flower to easily manage celery in browsers
 
 ```bash
 # Run flower to manage celery
-ENVIRONMENT=local celery -A glinteco_showoff.celery_tasks flower
+ENVIRONMENT=local celery -A student_management.celery_tasks flower
 ```
 
 Then navigate to http://localhost:5555/

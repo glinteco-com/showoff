@@ -1,12 +1,12 @@
 """
-    This configuration file overrides some necessary configs
-    to deploy the app to production/staging environment.
+This configuration file overrides some necessary configs
+to deploy the app to production/staging environment.
 """
+
 from decouple import Csv
 
 from .base import *  # noqa
 from .base import config
-
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 

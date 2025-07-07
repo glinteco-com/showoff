@@ -24,7 +24,7 @@ CELERY_TASK_EAGER_PROPAGATES = config(
     "CELERY_TASK_EAGER_PROPAGATES", default=False, cast=bool
 )
 
-''' Example
+""" Example
 CELERY_BEAT_SCHEDULE = {
     "task_name": {
         "task": "namespace.module.task",
@@ -33,5 +33,5 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(minutes="*/5")
     }
 }
-'''
+"""
 CELERY_BEAT_SCHEDULE = {}
